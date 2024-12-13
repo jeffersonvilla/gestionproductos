@@ -41,6 +41,32 @@ public class CategoriaServicio {
 
     public CategoriaDto obtenerCategoriaPorId(Long id){
 
+        Optional<Categoria> categoria = buscarCategoriaEnBd(id);
+
+        return categoria.map(categoriaMapper::categoriaEntityToCategoriaDto).get();
+
+    }
+
+    public CategoriaDto actualizarCategoria(Long id, CategoriaDto categoriaDto){
+
+        Categoria categoria = buscarCategoriaEnBd(id).get();
+
+        categoria.setNombre(categoriaDto.getNombre());
+
+        return categoriaMapper.categoriaEntityToCategoriaDto(
+                categoriaRepositorio.save(categoria)
+        );
+    }
+
+    public void eliminarCategoria(Long id){
+
+        buscarCategoriaEnBd(id);
+
+        categoriaRepositorio.deleteById(id);
+    }
+
+    private Optional<Categoria> buscarCategoriaEnBd(Long id){
+
         Optional<Categoria> categoria = categoriaRepositorio.findById(id);
 
         if(categoria.isEmpty()){
@@ -49,8 +75,7 @@ public class CategoriaServicio {
             );
         }
 
-        return categoria.map(categoriaMapper::categoriaEntityToCategoriaDto).get();
-
+        return categoria;
     }
 
 }

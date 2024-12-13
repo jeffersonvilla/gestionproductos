@@ -5,8 +5,10 @@ import com.semillerojava.gestionproductos.servicio.CategoriaServicio;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,5 +48,23 @@ public class CategoriaControlador {
                 categoriaServicio.obtenerCategoriaPorId(id),
                 HttpStatus.OK
         );
+    }
+
+    @PutMapping("actualizar")
+    public ResponseEntity<CategoriaDto> actualizarCategoria(
+            @RequestParam Long id, @RequestBody @Valid CategoriaDto categoriaDto
+    ){
+        return new ResponseEntity<>(
+                categoriaServicio.actualizarCategoria(id, categoriaDto),
+                HttpStatus.OK
+        );
+    }
+
+    @DeleteMapping("eliminar")
+    public ResponseEntity eliminarCategoria(@RequestParam Long id){
+
+        categoriaServicio.eliminarCategoria(id);
+
+        return ResponseEntity.ok().build();
     }
 }
