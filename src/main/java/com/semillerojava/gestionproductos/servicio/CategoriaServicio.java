@@ -65,7 +65,7 @@ public class CategoriaServicio {
         categoriaRepositorio.deleteById(id);
     }
 
-    private Optional<Categoria> buscarCategoriaEnBd(Long id){
+    public Optional<Categoria> buscarCategoriaEnBd(Long id){
 
         Optional<Categoria> categoria = categoriaRepositorio.findById(id);
 
