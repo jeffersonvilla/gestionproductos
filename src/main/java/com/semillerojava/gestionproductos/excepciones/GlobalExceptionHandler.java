@@ -31,4 +31,13 @@ public class GlobalExceptionHandler {
                 ex.getMessage(), HttpStatus.NOT_FOUND
         );
     }
+
+    @ExceptionHandler(ProductoNoEncontradoException.class)
+    public ResponseEntity<String> handleProductoNoEncontradoException(
+            ProductoNoEncontradoException ex
+    ){
+        return new ResponseEntity<>(
+                ex.getMessage(), HttpStatus.NOT_FOUND
+        );
+    }
 }
