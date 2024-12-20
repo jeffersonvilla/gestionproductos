@@ -1,5 +1,6 @@
 package com.semillerojava.gestionproductos.servicio;
 
+import com.semillerojava.gestionproductos.dto.ActualizarProductoDto;
 import com.semillerojava.gestionproductos.dto.CrearProductoDto;
 import com.semillerojava.gestionproductos.dto.ProductoDto;
 import com.semillerojava.gestionproductos.excepciones.ProductoNoEncontradoException;
@@ -56,6 +57,18 @@ public class ProductoServicio {
         Optional<Producto> producto = buscarProductoEnBd(id);
 
         return producto.map(productoMapper::productoEntityToProductoDto).get();
+    }
+
+    public ProductoDto actualizarProducto(Long id, ActualizarProductoDto dto){
+
+        Producto producto = buscarProductoEnBd(id).get();
+
+        producto.setNombre(dto.getNombre());
+        producto.setPrecio(dto.getPrecio());
+
+        return productoMapper.productoEntityToProductoDto(
+                productoRepositorio.save(producto)
+        );
     }
 
     public Optional<Producto> buscarProductoEnBd(Long id){
