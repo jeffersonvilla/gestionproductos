@@ -71,6 +71,13 @@ public class ProductoServicio {
         );
     }
 
+    public void eliminarProducto(Long id){
+
+        buscarProductoEnBd(id);
+
+        productoRepositorio.deleteById(id);
+    }
+
     public Optional<Producto> buscarProductoEnBd(Long id){
 
         Optional<Producto> producto = productoRepositorio.findById(id);
