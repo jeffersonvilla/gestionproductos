@@ -89,4 +89,23 @@ public class ProductoServicio {
 
         return producto;
     }
+
+    public List<ProductoDto> filtrarPorNombre(String nombre){
+
+        return productoRepositorio.findByNombreContainingIgnoreCase(nombre)
+                .stream()
+                .map(productoMapper::productoEntityToProductoDto)
+                .toList();
+    }
+
+    public List<ProductoDto> filtrarPorCategoria(List<Long> ids){
+
+        return productoRepositorio.findByCategoriaIdIn(ids)
+                .stream()
+                .map(productoMapper::productoEntityToProductoDto)
+                .toList();
+    }
+
+
+
 }

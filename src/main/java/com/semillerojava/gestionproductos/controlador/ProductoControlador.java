@@ -74,4 +74,24 @@ public class ProductoControlador {
 
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("filtrar/nombre")
+    public ResponseEntity<List<ProductoDto>> filtrarPorNombre(@RequestParam String nombre){
+
+        return new ResponseEntity<>(
+                productoServicio.filtrarPorNombre(nombre),
+                HttpStatus.OK
+        );
+    }
+
+    @GetMapping("filtrar/categoria")
+    public ResponseEntity<List<ProductoDto>> filtrarPorCategoria(@RequestParam List<Long> ids){
+
+        return new ResponseEntity<>(
+                productoServicio.filtrarPorCategoria(ids),
+                HttpStatus.OK
+        );
+    }
+
+
 }
