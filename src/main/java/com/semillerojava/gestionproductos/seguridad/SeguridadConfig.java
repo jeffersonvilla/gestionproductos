@@ -38,9 +38,16 @@ public class SeguridadConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/login").permitAll()
-                        //.requestMatchers(RUTA_CREAR_AUX_BODEGA)
-                        //.hasAuthority(ROL_ADMIN)
+                        .requestMatchers("/autenticacion/login").permitAll()
+                        .requestMatchers("/categoria/crear",
+                                "/categoria/actualizar",
+                                "/categoria/eliminar",
+                                "/registro/empleado")
+                        .hasAuthority("ADMIN")
+                        .requestMatchers("/categoria/listar",
+                                "/categoria/obtener",
+                                "/producto/**")
+                        .hasAnyAuthority("ADMIN", "EMPLEADO")
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

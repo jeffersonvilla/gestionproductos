@@ -56,6 +56,12 @@ public class Usuario implements UserDetails {
         this.rol = rol;
     }
 
+    public Usuario(String username, String clave, Rol rol) {
+        this.username = username;
+        this.clave = clave;
+        this.rol = rol;
+    }
+
     public Usuario() {
     }
 

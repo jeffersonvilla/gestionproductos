@@ -18,7 +18,7 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
 
-    private final String claveSecreta = "miClaveSecreta";
+    private final String claveSecreta = "7fcbae0ef41e10b5a72e8c6f99f80c6bf73d90d0a531ed3fd69cefc8ef39a35c7146b798ba545864d1bfe5d523b0da77c3f022d6870217c5beecf601bc326a478a98a6dd9eb64b27dc83c39f8b889e88a6efbdc57e6836fecb1718a46ef1d03f972352fbafc5081b53e427cbde5dc0fbb430d2054c1bce3590bdfcdfc7e2ed990bac84a94055e6f29e810601c067bc06416eea6022855300bcce5cba6244ba480470703f39db9a49a3e3c798d60fc5a13ecf0f2371231efa3acaea193fa4c408b6b194546681b1c8f3e65929f920a62e77df43f521a74dc009a623ba22b481303a71907989cceb200c15e319195bd4c792e7f7098f1ffb7f076e06c52e10869a";
 
     public String generarToken(Usuario usuario) {
         Map<String, Object> claims = new HashMap<>();
